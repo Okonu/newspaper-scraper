@@ -105,7 +105,10 @@ app.get('/news/:newspaperId', async (req, res) => {
         })
             res.send(`<html><body>${h2Elements}</body></html>`)
 
-        }).catch(err => console.log(err))
+        }).catch(err => {
+            console.log(err);
+            res.status(500).send("An error occurred while fetching data");
+        });
 })
 
 
