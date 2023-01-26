@@ -1,1 +1,1 @@
-# CLIMATE CHANGE NEWS API
+# Node Express Newspaper Scraper
