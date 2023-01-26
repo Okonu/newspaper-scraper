@@ -49,11 +49,12 @@ app.get('/', (req, res ) =>{
 })
  
 app.get('/news', (req, res) =>{
-    let h2Elements = ""
-    articles.forEach(article => {
-        h2Elements += `<h2><a href=${article.url}>${article.title}</a> - ${article.source}</h2>`
-    })
-    res.send(`<html><body>${h2Elements}</body></html>`)
+    res.json(articles)
+    // let h2Elements = ""
+    // articles.forEach(article => {
+    //     h2Elements += `<h2><a href=${article.url}>${article.title}</a> - ${article.source}</h2>`
+    // })
+    // res.send(`<html><body>${h2Elements}</body></html>`)
 //     axios.get('https://www.theguardian.com/environment/climate-crisis')
 //     .then((response) =>{
 //         const html = response.data
