@@ -72,11 +72,18 @@ app.get('/news', (req, res) =>{
 
 
 //route to get a specific article
-app.get('/news/:newspaperId', async (req, res) =>{
-    const newspaperId = req.params.newspaperId
+app.get('/news/:newspaperId', async (req, res) => {
+    const newspaperId = req.params.newspaperId;
 
-    const newspaperAddress = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].address
-    const newspaperBase = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].base
+    const selectedNewspaper = newspapers.filter(newspaper => newspaper.name == newspaperId)[0];
+
+    if (!selectedNewspaper) {
+      res.status(404).send('Newspaper not found');
+      return;
+    }
+
+    const newspaperAddress = selectedNewspaper.address;
+    const newspaperBase = selectedNewspaper.base;
 
     axios.get(newspaperAddress)
         .then(response =>{
