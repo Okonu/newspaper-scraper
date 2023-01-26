@@ -45,10 +45,15 @@ newspapers.forEach(newspaper => {
 
 app.get('/', (req, res ) =>{
     res.json('These are the latest Climate Change News around the World')
+
 })
  
 app.get('/news', (req, res) =>{
-    res.json(articles)
+    let h2Elements = ""
+    articles.forEach(article => {
+        h2Elements += `<h2><a href=${article.url}>${article.title}</a> - ${article.source}</h2>`
+    });
+    res.send(`<html><body>${h2Elements}</body></html>`)
 //     axios.get('https://www.theguardian.com/environment/climate-crisis')
 //     .then((response) =>{
 //         const html = response.data
@@ -88,7 +93,11 @@ app.get('/news/:newspaperId', async (req, res) =>{
                     source: newspaperId
                 })
             })
-            res.json(specificArticles)
+            let h2Elements = ""
+            specificArticles.forEach(article => { h2Elements += `<h2><a href=${article.url}>${article.title}</a> - ${article.source}</h2>`
+        })
+            res.send(`<html><body>${h2Elements}</body></html>`)
+
         }).catch(err => console.log(err))
 })
 
